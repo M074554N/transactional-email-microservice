@@ -17,6 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/emails','EmailsController@index');
-Route::get('/emails/{id}','EmailsController@show')->where('id','[0-9]+');
-Route::post('/emails/store','EmailsController@store');
+Route::get('/emails', 'EmailsController@index');
+Route::get('/emails/{id}', 'EmailsController@show')->where('id', '[0-9]+');
+Route::post('/emails/store', 'EmailsController@store');
