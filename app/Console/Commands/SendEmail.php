@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 use App\Email;
+use App\Jobs\SendEmailJob;
 
 class SendEmail extends Command
 {
@@ -14,18 +14,16 @@ class SendEmail extends Command
      * @var string
      */
     protected $signature = '
-                            email:send 
-                            {subject: The email subject} 
-                            {body: The email message content} 
-                            {type: The type of the email (text|html|markdown)} 
-                            {recipients: Comma separated list of recipiens email addresses}';
+        email:send
+        {email_id : The ID for the created email to send}
+    ';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send emails to multiple recipients';
+    protected $description = 'Send a previously created email with ID';
 
     /**
      * Create a new command instance.
@@ -42,15 +40,14 @@ class SendEmail extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle(){
         $email = Email::find((int) $this->argument('email_id'));
-        
+
         if(!$email){
-            Log::error('Couldn\'t find an email with id: '.$this->argument('email_id'));
+            $this->error("Cannot find an email with this ID: ".$this->argument('email_id'));
             die;
         }
 
-        dd($email);
+        SendEmailJob::dispatch($email)->onQueue('emails');
     }
 }
