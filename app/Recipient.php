@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Email;
 
 class Recipient extends Model{
+	protected $fillable = ['address'];
+
     public function emails(){
-        return $this->belongsToMany(Email::class);
+        return $this->belongsToMany(Email::class)->withPivot('status','service_provider')->withTimestamps();
     }
 }
