@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
-Vue.use(VueRouter)
-
 import App from './views/App';
 import Home from './views/Home';
 import Emails from './views/Emails';
 import CreateEmail from './views/CreateEmail';
+import VueQuill from 'vue-quill';
+
+Vue.use(VueRouter, VueQuill);
+Vue.config.productionTip = true;
 
 const router = new VueRouter({
     mode: 'history',
