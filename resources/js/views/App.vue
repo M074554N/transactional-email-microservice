@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <router-link class="navbar-brand" to="/">Takeaway.com</router-link>
+      <router-link class="navbar-brand" to="/">
+        <img src="/img/logo.png" alt="takeaway.com logo">
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -52,6 +54,9 @@ export default {};
 </script>
 
 <style>
+.navbar-brand img{
+  height: 30px;
+}
 #main {
   padding: 80px 0 0 0;
 }
