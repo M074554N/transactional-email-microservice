@@ -13,22 +13,22 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'mail_service_providers' => env('MAIL_SERVICE_PROVIDERS'),
+
+    'default_mail_provider' => env('DEFAULT_MAIL_PROVIDER'),
 
     'sendgrid' => [
         'api_key'   => env('SENDGRID_API_KEY'),
+        'endpoint'  => env('SENDGRID_ENDPOINT'),
+    ],
+    
+    'mailjet' => [
+        'api_key'   => env('MAILJET_API_KEY'),
+        'secret'    => env('MAILJET_API_SECRET'),
     ],
 
     'mailgun' => [
-        'domain'    => env('MAILGUN_DOMAIN'),
-        'secret'    => env('MAILGUN_SECRET'),
-        'endpoint'  => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
-    ],
-
-    'mailjet' => [
-        'username'  => env('MAILJET_USERNAME'),
-        'password'  => env('MAILJET_PASSWORD'),
-        'key'       => env('MAILJET_API_KEY'),
-        'secret'    => env('MAILJET_API_SECRET'),
+        'api_key'    => env('MAILGUN_API_KEY'),
     ],
 
     'postmark' => [
