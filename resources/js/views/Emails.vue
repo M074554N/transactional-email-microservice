@@ -7,6 +7,7 @@
         <tr>
           <th>#</th>
           <th>Recipients</th>
+          <th>Sccessfull</th>
           <th>Subject</th>
           <th>Type</th>
           <th>Options</th>
@@ -15,6 +16,7 @@
       <tbody>
         <tr v-for="(email, index) in emails" :key="index">
           <td>{{email.id}}</td>
+          <td>{{email.recipients_count}}</td>
           <td>{{email.recipients_count}}</td>
           <td>{{email.subject}}</td>
           <td>{{email.type}}</td>
@@ -38,7 +40,7 @@ export default {
   },
   created() {
     axios
-      .get("http://127.0.0.1:8000/api/emails")
+      .get("/api/emails")
       .then(result => {
         this.emails = result.data.data;
       })
