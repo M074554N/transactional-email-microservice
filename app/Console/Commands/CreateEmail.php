@@ -40,7 +40,8 @@ class CreateEmail extends Command
      *
      * @return void
      */
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -49,27 +50,36 @@ class CreateEmail extends Command
      *
      * @return mixed
      */
-    public function handle(){
-        try{
+    public function handle()
+    {
+        try {
+            Log::info('Trying to create email');
+            //Make sure to get only valid recipients 
             $valid_recipients = new ValidRecipient($this->argument('recipients'));
             $this->recipients = $valid_recipients->getRecipients();
 
+            //Create the Email in the DB
             $email = new Email();
-            $email->type = in_array($this->argument('type'), ['text/plain','text/html','text/markdown']) ? $this->argument('type') : 'text/plain';
+            $email->type = in_array($this->argument('type'), ['text/plain', 'text/html', 'text/markdown']) ? $this->argument('type') : 'text/plain';
             $email->subject = $this->argument('subject');
             $email->body = $this->argument('body');
             $email->save();
 
-            foreach($this->recipients as $r){
-                $reci = \App\Recipient::firstOrNew(['address'=>$r]);
+            Log::info('Email created successfully');
+
+            Log::info('Attaching recipients...');
+            //Associate the recipients to the Email object
+            foreach ($this->recipients as $r) {
+                $reci = \App\Recipient::firstOrNew(['address' => $r]);
                 $reci->save();
                 $email->recipients()->attach($reci);
             }
 
-            $this->info("Email created successfully with ID: ".$email->id);
-
-        }catch(Exception $e){
-            $this->info($error);
+            Log::info("Email created successfully with ID: " . $email->id);
+            $this->info("Email created successfully with ID: " . $email->id);
+        } catch (Exception $e) {
+            Log::error('Error when creating email: ' . $e . getMessage());
+            $this->error($e . getMessage());
         }
     }
 }
