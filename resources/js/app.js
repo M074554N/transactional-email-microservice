@@ -4,6 +4,7 @@ import App from './views/App';
 import Home from './views/Home';
 import Emails from './views/Emails';
 import CreateEmail from './views/CreateEmail';
+import ViewEmail from './views/ViewEmail';
 import VueQuill from 'vue-quill';
 
 Vue.use(VueRouter, VueQuill);
@@ -26,6 +27,11 @@ const router = new VueRouter({
             name: 'create-email',
             component: CreateEmail,
         },
+        {
+            path: '/email/:id',
+            name: 'view-email',
+            component: ViewEmail,
+        }
     ],
 });
 
