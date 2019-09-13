@@ -214,7 +214,7 @@ class SendEmailJob implements ShouldQueue
                 }
             }
         }
-        Log::info('Email Job Ended');
+        Log::info('Email Job Ended' . date('Y-m-d h:i:s'));
     }
 
     /**
