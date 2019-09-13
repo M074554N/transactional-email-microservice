@@ -57,7 +57,7 @@ class EmailsController extends Controller
             $data['message'] = "Successfully Created the email with ID: " . $email->id . " and it's on its way.";
         }
 
-        dispatch(new SendEmailJob($email))->onQueue('emails');
+        SendEmailJob::dispatch($email)->onQueue('emails');
 
         return response()->json($data, 201);
     }
