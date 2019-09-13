@@ -7,7 +7,6 @@
         <tr>
           <th>#</th>
           <th>Recipients</th>
-          <th>Sccessfull</th>
           <th>Subject</th>
           <th>Type</th>
           <th>Options</th>
@@ -17,11 +16,10 @@
         <tr v-for="(email, index) in emails" :key="index">
           <td>{{email.id}}</td>
           <td>{{email.recipients_count}}</td>
-          <td>{{email.recipients_count}}</td>
           <td>{{email.subject}}</td>
           <td>{{email.type}}</td>
           <td>
-            <a href="#">View</a>
+            <a :href="'email/'+email.id">View</a>
           </td>
         </tr>
       </tbody>
