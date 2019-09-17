@@ -20,6 +20,9 @@ class CreateEmailRecipientTable extends Migration
             $table->string('status')->nullable();
             $table->string('service_provider')->nullable();
             $table->timestamps();
+
+            $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('recipient_id')->references('id')->on('recipients')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
