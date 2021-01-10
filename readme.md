@@ -1,11 +1,11 @@
 ## About The App
 
-This app is simple transactional email microservice built using Laravel 5.8 and Vue.js 2, a coding challenge for [Takeaway.com](http://takeaway.com). The requirements were to build a microservice that is horizontaly scaleable with the ability to use more than one email service (The main service and other fallbacks).
+This app is simple transactional email microservice built using Laravel 5.8 and Vue.js 2, it's based on a coding challenge for a food delivery company. The requirements were to build a microservice that is horizontaly scaleable with the ability to use more than one email service (One as the main service and other fallbacks).
 
 ## Install Instructions
 
--   Download the repo using git clone or just click the download button on the top right side
--   Navigate to the repo folder and run the following commands using the command line
+-   Clone the repo
+-   Navigate to the repo folder and run the following commands:
 
 ```
 composer install
